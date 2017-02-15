@@ -1,0 +1,61 @@
+set number
+set relativenumber
+set nocompatible      " We're running Vim, not Vi!
+
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'kballard/vim-swift'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rust-lang/rust.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'valloric/youcompleteme'
+Plugin 'slim-template/vim-slim'
+Plugin 'vim-ruby/vim-ruby'
+
+call vundle#end()
+
+" Syntastic specific settings==================== 
+if &diff
+else
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+endif
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:ycm_rust_src_path = '/Users/ion/Repos/rust/src'
+"==================================================
+
+" Global specific settings     ==================== 
+syntax on             " Enable syntax highlighting
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+colorscheme slate
+set tabstop=4 shiftwidth=4 expandtab
+set listchars=space:⋅,eol:¶
+set nolist            " Enable no visible spaces
+
+" Set font for gvim
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
+" my good shortcuts
+let mapleader = ","
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+vnoremap <c-s-c> "*y
