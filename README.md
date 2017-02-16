@@ -3,3 +3,6 @@
 ## files
 - [vimrc](./vim/vimrc)
 - [zshrc](./zsh/zshrc)
+
+## install configurations
+
