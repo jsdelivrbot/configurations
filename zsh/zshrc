@@ -1,4 +1,10 @@
-source ${HOME}/.antigen/antigen.zsh
+antigen_file="${HOME}/.antigen/antigen.zsh"
+
+if [ -f ${antigen_file} ] ; then
+    source ${HOME}/.antigen/antigen.zsh
+else
+    echo "there is no antigen.zsh file in .antigen/"
+fi
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -16,6 +22,17 @@ antigen theme robbyrussell
 antigen apply
 eval $(/usr/libexec/path_helper -s)
 
-if [ -d "/Users/ion/.cargo/bin" ] ; then
+if [ -d "${HOME}/.cargo/bin" ] ; then
     export PATH="/Users/ion/.cargo/bin:${PATH}"
+else
+    echo "cargo is not installed"
 fi
+
+cargo_env_file="${HOME}/.cargo/env"
+if [ -f ${cargo_env_file} ] ; then
+    source ${cargo_env_file}
+else
+    echo "there is no .cargo/env file"
+fi
+
+echo "done"
